@@ -655,7 +655,7 @@ if run:
 <div class="nc-footer">
   <div class="nc-meta">
     {post.word_count} words &nbsp;·&nbsp;
-    cluster: {post.cluster_id or "—"} &nbsp;·&nbsp;
+    cluster: {post.cluster_id or "-"} &nbsp;·&nbsp;
     class: {post.content_class}
   </div>
   <div class="nc-tag">neevcloud/content-gate v1.0</div>
