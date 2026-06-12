@@ -163,7 +163,7 @@ button[kind="primary"]:hover {{
 }}
 
 /* ── Divider ── */
-.nc-hr {{ border: none; border-top: 1px solid {T['surface2']}; margin: 18px 0; }}
+.nc-hr {{ border: none; border-top: 1px solid {T['surface2']}; margin: 6px 0; }}
 
 /* ── Header ── */
 .nc-header {{
@@ -390,11 +390,11 @@ st.markdown(f"""
 # ── Sample selector ───────────────────────────────────────────────────────────
 st.markdown('<div class="nc-lbl">Load Sample</div>', unsafe_allow_html=True)
 sample_choice = st.selectbox(
-    "sample", ["- paste your own -"] + list(SAMPLES.keys()),
+    "sample", ["paste your own"] + list(SAMPLES.keys()),
     label_visibility="collapsed",
 )
 
-if sample_choice != "- paste your own -":
+if sample_choice != "paste your own":
     p = parse_markdown(os.path.join(BASE, SAMPLES[sample_choice]))
     d_title, d_slug, d_kw = p.title, p.slug, p.primary_keyword
     d_cluster, d_class, d_body = p.cluster_id, p.content_class, p.body
@@ -405,7 +405,7 @@ else:
 st.markdown('<hr class="nc-hr">', unsafe_allow_html=True)
 
 # ── Inputs ────────────────────────────────────────────────────────────────────
-left, right = st.columns([1, 2], gap="medium")
+left, right = st.columns([1, 2], gap="small")
 
 with left:
     st.markdown('<div class="nc-lbl">Post Metadata</div>', unsafe_allow_html=True)
