@@ -113,7 +113,7 @@ textarea:focus {{
     outline: none !important;
 }}
 .stTextInput label, .stTextArea label, .stSelectbox label {{
-    color: {T['muted']} !important;
+    color: {T['text2']} !important;
     font-size: 11px !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
@@ -208,13 +208,13 @@ button[kind="primary"]:hover {{
     background: var(--ac, {T['border']});
 }}
 .nc-stat-v {{ font-size: 26px; font-weight: 800; letter-spacing: -1px; line-height: 1; }}
-.nc-stat-l {{ font-size: 10px; color: {T['muted']}; font-weight: 600; margin-top: 5px;
+.nc-stat-l {{ font-size: 10px; color: {T['text2']}; font-weight: 600; margin-top: 5px;
              text-transform: uppercase; letter-spacing: 0.9px; }}
 .g {{ color: {T['accent']}; }} .b {{ color: {'#58A6FF' if DARK else '#0969DA'}; }}
 
 /* ── Section label ── */
 .nc-lbl {{
-    font-size: 10px; font-weight: 700; color: {T['muted']}; text-transform: uppercase;
+    font-size: 10px; font-weight: 700; color: {T['text2']}; text-transform: uppercase;
     letter-spacing: 1.1px; margin-bottom: 9px; display: flex; align-items: center; gap: 8px;
 }}
 .nc-lbl::after {{ content: ''; flex: 1; height: 1px; background: {T['surface2']}; }}
