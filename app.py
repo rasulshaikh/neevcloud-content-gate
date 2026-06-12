@@ -27,18 +27,18 @@ if DARK:
         text1      = "#FFFFFF",
         text2      = "#888888",
         muted      = "#555555",
-        accent     = "#C9A84C",
-        accent_bg  = "rgba(201,168,76,0.07)",
-        accent_bdr = "rgba(201,168,76,0.3)",
+        accent     = "#3FB950",
+        accent_bg  = "rgba(63,185,80,0.07)",
+        accent_bdr = "rgba(63,185,80,0.3)",
         amber      = "#D29922",
         amber_bg   = "rgba(210,153,34,0.07)",
         amber_bdr  = "rgba(210,153,34,0.35)",
         red        = "#F85149",
         red_bg     = "rgba(248,81,73,0.07)",
         red_bdr    = "rgba(248,81,73,0.35)",
-        btn_txt    = "#000000",
+        btn_txt    = "#052E16",
         meta_bg    = "#000000",
-        sv_key     = "#C9A84C",
+        sv_key     = "#3FB950",
         sv_str     = "#888888",
         sv_num     = "#CCCCCC",
         sv_kw      = "#AAAAAA",
@@ -54,18 +54,18 @@ else:
         text1      = "#000000",
         text2      = "#444444",
         muted      = "#777777",
-        accent     = "#7A5C10",        # dark gold - 5.6:1 on white, AA pass
-        accent_bg  = "rgba(122,92,16,0.07)",
-        accent_bdr = "rgba(122,92,16,0.3)",
+        accent     = "#1A7F37",        # GitHub green - 4.54:1 on white, AA pass
+        accent_bg  = "rgba(26,127,55,0.07)",
+        accent_bdr = "rgba(26,127,55,0.3)",
         amber      = "#7A5200",
         amber_bg   = "rgba(122,82,0,0.07)",
         amber_bdr  = "rgba(122,82,0,0.3)",
         red        = "#C0182A",
         red_bg     = "rgba(192,24,42,0.07)",
         red_bdr    = "rgba(192,24,42,0.3)",
-        btn_txt    = "#FFFFFF",        # white on dark gold button
+        btn_txt    = "#FFFFFF",        # white on green button
         meta_bg    = "#F5F5F5",
-        sv_key     = "#7A5C10",
+        sv_key     = "#1A7F37",
         sv_str     = "#444444",
         sv_num     = "#000000",
         sv_kw      = "#333333",
@@ -174,7 +174,7 @@ button[kind="primary"]:hover {{
 .nc-logo {{ display: flex; align-items: center; gap: 13px; }}
 .nc-logo-icon {{
     width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
-    background: linear-gradient(135deg, {T['accent']} 0%, {'#9A7030' if DARK else '#9A7030'} 100%);
+    background: linear-gradient(135deg, {T['accent']} 0%, {'#15803D' if DARK else '#15803D'} 100%);
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 0 20px {T['accent_bg']};
 }}
@@ -349,7 +349,7 @@ with h_left:
   <div class="nc-logo">
     <div class="nc-logo-icon">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-           stroke="#000000" stroke-width="2.5"
+           stroke="#052E16" stroke-width="2.5"
            stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
