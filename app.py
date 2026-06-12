@@ -66,9 +66,10 @@ with left:
     slug    = st.text_input("Slug",            value=d_slug,    key=f"s_{sample_choice}")
     keyword = st.text_input("Primary Keyword", value=d_kw,      key=f"k_{sample_choice}")
     cluster = st.text_input("Cluster ID",      value=d_cluster, key=f"c_{sample_choice}")
+    _classes = ["mid", "pillar", "programmatic"]
     content_class = st.selectbox(
-        "Content Class", ["mid", "pillar", "programmatic"],
-        index=["mid", "pillar", "programmatic"].index(d_class),
+        "Content Class", _classes,
+        index=_classes.index(d_class) if d_class in _classes else 0,
         key=f"cl_{sample_choice}",
     )
 
