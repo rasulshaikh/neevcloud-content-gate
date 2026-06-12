@@ -340,8 +340,10 @@ with left:
 
 with right:
     st.markdown('<div class="nc-lbl">Post Body - Markdown</div>', unsafe_allow_html=True)
+    _lines = max(d_body.count("\n") + 1, 12)
+    _height = min(_lines * 20 + 32, 620)
     body = st.text_area(
-        "body", value=d_body, height=294,
+        "body", value=d_body, height=_height,
         label_visibility="collapsed", key=f"b_{sample_choice}",
     )
 
