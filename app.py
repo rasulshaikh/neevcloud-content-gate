@@ -199,7 +199,7 @@ textarea:focus {
     margin-top: 9px; padding: 8px 10px; background: #0D1117;
     border: 1px solid #30363D; border-radius: 5px;
     font-size: 10.5px; color: #8B949E;
-    font-family: 'SF Mono','Fira Code',monospace; line-height: 1.8;
+    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace; line-height: 1.8;
 }
 .sv-key   { color: #9CDCFE; }
 .sv-str   { color: #CE9178; }
@@ -212,11 +212,16 @@ textarea:focus {
     display: flex; align-items: center; justify-content: space-between;
     padding: 13px 0 2px; border-top: 1px solid #21262D; margin-top: 18px;
 }
-.nc-foot-m { font-size: 11px; color: #484F58; font-family: 'SF Mono','Fira Code',monospace; }
+.nc-foot-m {
+    font-size: 11px; color: #6E7681;
+    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace;
+    letter-spacing: 0.1px;
+}
 .nc-foot-t {
-    background: #161B22; border: 1px solid #30363D; color: #484F58;
-    font-size: 10px; padding: 3px 9px; border-radius: 4px;
-    font-family: 'SF Mono','Fira Code',monospace;
+    background: #0A1F0F; border: 1px solid rgba(34,197,94,0.25); color: #3FB950;
+    font-size: 10px; padding: 3px 10px; border-radius: 4px;
+    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace;
+    letter-spacing: 0.3px; font-weight: 500;
 }
 
 /* ── Misc ── */
