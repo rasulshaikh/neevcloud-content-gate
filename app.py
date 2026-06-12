@@ -78,9 +78,11 @@ css = f"""
 
 html, body, .stApp {{ font-family: 'Inter', sans-serif !important; }}
 .stApp {{ background: {T['base']} !important; }}
-#MainMenu, footer, [data-testid="stDecoration"],
-[data-testid="stStatusWidget"] {{ display: none !important; }}
-.block-container {{ padding-top: 1.5rem !important; max-width: 1160px !important; }}
+#MainMenu, footer, header, [data-testid="stDecoration"],
+[data-testid="stStatusWidget"], [data-testid="stHeader"],
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"] {{ display: none !important; }}
+.block-container {{ padding-top: 1.2rem !important; max-width: 1160px !important; }}
 
 /* ── Inputs ── */
 input, input[type="text"] {{
@@ -100,7 +102,7 @@ textarea {{
     background: {T['surface']} !important;
     border: 1px solid {T['border_hi']} !important;
     border-radius: 6px !important;
-    color: {T['text2']} !important;
+    color: {T['text1']} !important;
     font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace !important;
     font-size: 12px !important;
     line-height: 1.65 !important;
@@ -177,10 +179,10 @@ button[kind="primary"]:hover {{
 }}
 .nc-title {{ font-size: 17px; font-weight: 700; color: {T['text1']}; letter-spacing: -0.3px; }}
 .nc-sub {{ font-size: 13px; color: {T['muted']}; margin-top: 3px; }}
-/* right-align toggle col */
-[data-testid="column"]:last-child {{
-    display: flex !important; align-items: flex-start !important;
-    justify-content: flex-end !important; padding-top: 18px !important;
+/* right-align toggle col - scope to header row only */
+[data-testid="stHorizontalBlock"]:first-child [data-testid="column"]:last-child {{
+    display: flex !important; justify-content: flex-end !important;
+    align-items: flex-start !important; padding-top: 14px !important;
 }}
 .nc-live {{
     display: flex; align-items: center; gap: 7px;
@@ -293,6 +295,14 @@ button[kind="primary"]:hover {{
 ::-webkit-scrollbar-thumb {{ background: {T['border']}; border-radius: 3px; }}
 [data-testid="stVerticalBlock"] > div {{ gap: 0 !important; }}
 .stMarkdown p {{ color: {T['text2']}; }}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {{
+    .nc-stats {{ grid-template-columns: repeat(2,1fr) !important; }}
+    .nc-grid  {{ grid-template-columns: 1fr !important; }}
+    .nc-v     {{ flex-direction: column; gap: 10px; }}
+    .nc-v-score {{ text-align: left; }}
+}}
 </style>
 """
 st.markdown(css, unsafe_allow_html=True)
@@ -412,9 +422,9 @@ with left:
 
 with right:
     st.markdown('<div class="nc-lbl">Post Body - Markdown</div>', unsafe_allow_html=True)
-    # Height matches left column (5 inputs x ~64px + label = ~370px)
+    # Height matches left column (5 inputs x ~58px + label = ~310px)
     body = st.text_area(
-        "body", value=d_body, height=370,
+        "body", value=d_body, height=305,
         label_visibility="collapsed", key=f"b_{sample_choice}",
     )
 
