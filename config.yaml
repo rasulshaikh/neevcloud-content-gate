@@ -1,0 +1,36 @@
+near_duplicate:
+  top_k: 3
+  flag_threshold: 0.40
+  fail_threshold: 0.55   # prototype TF-IDF thresholds; recalibrate for semantic embeddings
+
+cannibalisation:
+  fail_threshold: 0.35
+
+structure:
+  pillar:
+    min_words_fail: 1200
+    min_words_flag: 1800
+    min_h2: 5
+  mid:
+    min_words_fail: 250
+    min_words_flag: 700
+    min_h2: 3
+  programmatic:
+    min_words_fail: 300
+    min_words_flag: 450
+    min_h2: 2
+
+readability:
+  max_grade: 16
+
+claims:
+  max_unsourced_fail: 2
+
+confidentiality:
+  denylist_terms:
+    - "Project Garuda"          # example internal codename
+    - "internal use only"
+    - "do not share"
+  denylist_patterns:
+    - "\\u20B9\\s?\\d[\\d,]*\\s*(?:/|per)\\s*(?:GPU|hour|month)"   # unreleased INR pricing
+    - "margin of \\d+%"
