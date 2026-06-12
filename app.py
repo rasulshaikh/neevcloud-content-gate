@@ -127,8 +127,8 @@ textarea:focus {{
 }}
 [data-testid="stSelectbox"] svg {{ fill: {T['muted']} !important; }}
 
-/* ── Button ── */
-.stButton > button {{
+/* ── Run Gate button (primary only) ── */
+[data-testid="baseButton-primary"] {{
     background: linear-gradient(135deg, {T['accent']} 0%, {'#16A34A' if DARK else '#116329'} 100%) !important;
     color: {T['btn_txt']} !important;
     font-weight: 700 !important; font-size: 14px !important;
@@ -138,9 +138,25 @@ textarea:focus {{
     transition: box-shadow 0.2s, transform 0.15s !important; cursor: pointer !important;
     font-family: 'Inter', sans-serif !important;
 }}
-.stButton > button:hover {{
+[data-testid="baseButton-primary"]:hover {{
     box-shadow: 0 0 0 1px {T['accent']}, 0 6px 28px {T['accent_bg']} !important;
     transform: translateY(-1px) !important;
+}}
+/* ── Theme toggle (secondary) ── */
+[data-testid="baseButton-secondary"] {{
+    background: {T['surface']} !important;
+    border: 1px solid {T['border']} !important;
+    color: {T['text2']} !important;
+    font-size: 12px !important; font-weight: 500 !important;
+    padding: 6px 14px !important; border-radius: 6px !important;
+    box-shadow: none !important; transform: none !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: border-color 0.15s !important;
+}}
+[data-testid="baseButton-secondary"]:hover {{
+    border-color: {T['border_hi']} !important;
+    color: {T['text1']} !important;
+    transform: none !important; box-shadow: none !important;
 }}
 
 /* ── Divider ── */
@@ -148,7 +164,7 @@ textarea:focus {{
 
 /* ── Header ── */
 .nc-header {{
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; gap: 16px;
     padding: 16px 0 20px; border-bottom: 1px solid {T['surface2']}; margin-bottom: 22px;
 }}
 .nc-logo {{ display: flex; align-items: center; gap: 13px; }}
@@ -159,7 +175,12 @@ textarea:focus {{
     box-shadow: 0 0 20px {T['accent_bg']};
 }}
 .nc-title {{ font-size: 17px; font-weight: 700; color: {T['text1']}; letter-spacing: -0.3px; }}
-.nc-sub {{ font-size: 12px; color: {T['muted']}; margin-top: 2px; }}
+.nc-sub {{ font-size: 13px; color: {T['muted']}; margin-top: 3px; }}
+/* right-align toggle col */
+[data-testid="column"]:last-child {{
+    display: flex !important; align-items: flex-start !important;
+    justify-content: flex-end !important; padding-top: 18px !important;
+}}
 .nc-live {{
     display: flex; align-items: center; gap: 7px;
     background: {T['accent_bg']}; border: 1px solid {T['accent_bdr']};
@@ -307,7 +328,7 @@ SAMPLES = {
 }
 
 # ── Header ────────────────────────────────────────────────────────────────────
-h_left, h_right = st.columns([6, 1])
+h_left, h_right = st.columns([9, 1])
 with h_left:
     st.markdown(f"""
 <div class="nc-header">
@@ -329,10 +350,7 @@ with h_left:
 """, unsafe_allow_html=True)
 
 with h_right:
-    st.write("")
-    st.write("")
-    label = "Light" if DARK else "Dark"
-    if st.button(f"{'☀' if DARK else '●'} {label}", use_container_width=True):
+    if st.button("☀" if DARK else "◑", use_container_width=True):
         st.session_state.dark = not DARK
         st.rerun()
 
