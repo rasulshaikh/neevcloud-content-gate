@@ -16,67 +16,67 @@ if "dark" not in st.session_state:
 
 DARK = st.session_state.dark
 
-# ── Design tokens (GitHub light / dark) ──────────────────────────────────────
+# ── Design tokens (Reactor-style dark / light) ────────────────────────────────
 if DARK:
     T = dict(
-        base       = "#0D1117",
-        surface    = "#161B22",
-        surface2   = "#21262D",
-        border     = "#30363D",
-        border_hi  = "#484F58",
-        text1      = "#E6EDF3",
-        text2      = "#8B949E",
-        muted      = "#6E7681",
-        accent     = "#3FB950",
-        accent_bg  = "#0A1F0F",
-        accent_bdr = "rgba(63,185,80,0.3)",
+        base       = "#000000",
+        surface    = "#0A0A0A",
+        surface2   = "#141414",
+        border     = "#1A1A1A",
+        border_hi  = "#2A2A2A",
+        text1      = "#FFFFFF",
+        text2      = "#888888",
+        muted      = "#555555",
+        accent     = "#C9A84C",
+        accent_bg  = "rgba(201,168,76,0.07)",
+        accent_bdr = "rgba(201,168,76,0.3)",
         amber      = "#D29922",
-        amber_bg   = "#1A1300",
+        amber_bg   = "rgba(210,153,34,0.07)",
         amber_bdr  = "rgba(210,153,34,0.35)",
         red        = "#F85149",
-        red_bg     = "#1A0606",
+        red_bg     = "rgba(248,81,73,0.07)",
         red_bdr    = "rgba(248,81,73,0.35)",
-        btn_txt    = "#052E16",
-        meta_bg    = "#0D1117",
-        sv_key     = "#9CDCFE",
-        sv_str     = "#CE9178",
-        sv_num     = "#B5CEA8",
-        sv_kw      = "#569CD6",
-        sv_punct   = "#6E7681",
+        btn_txt    = "#000000",
+        meta_bg    = "#000000",
+        sv_key     = "#C9A84C",
+        sv_str     = "#888888",
+        sv_num     = "#CCCCCC",
+        sv_kw      = "#AAAAAA",
+        sv_punct   = "#333333",
     )
 else:
     T = dict(
         base       = "#FFFFFF",
-        surface    = "#F6F8FA",
-        surface2   = "#EAEEF2",
-        border     = "#D0D7DE",
-        border_hi  = "#8C959F",
-        text1      = "#1F2328",
-        text2      = "#636C76",
-        muted      = "#6E7781",
-        accent     = "#1A7F37",
-        accent_bg  = "#DAFBE1",
-        accent_bdr = "rgba(26,127,55,0.3)",
+        surface    = "#F5F5F5",
+        surface2   = "#E8E8E8",
+        border     = "#E0E0E0",
+        border_hi  = "#BBBBBB",
+        text1      = "#000000",
+        text2      = "#555555",
+        muted      = "#888888",
+        accent     = "#C9A84C",
+        accent_bg  = "rgba(201,168,76,0.08)",
+        accent_bdr = "rgba(201,168,76,0.3)",
         amber      = "#9A6700",
-        amber_bg   = "#FFF8C5",
+        amber_bg   = "rgba(154,103,0,0.08)",
         amber_bdr  = "rgba(154,103,0,0.3)",
         red        = "#CF222E",
-        red_bg     = "#FFEBE9",
+        red_bg     = "rgba(207,34,46,0.08)",
         red_bdr    = "rgba(207,34,46,0.3)",
-        btn_txt    = "#FFFFFF",
-        meta_bg    = "#F6F8FA",
-        sv_key     = "#0550AE",
-        sv_str     = "#0A3069",
-        sv_num     = "#1A7F37",
-        sv_kw      = "#8250DF",
-        sv_punct   = "#8C959F",
+        btn_txt    = "#000000",
+        meta_bg    = "#F5F5F5",
+        sv_key     = "#996A00",
+        sv_str     = "#555555",
+        sv_num     = "#000000",
+        sv_kw      = "#333333",
+        sv_punct   = "#888888",
     )
 
 css = f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
-html, body, .stApp {{ font-family: 'Inter', sans-serif !important; }}
+html, body, .stApp {{ font-family: 'Space Grotesk', sans-serif !important; }}
 .stApp {{ background: {T['base']} !important; }}
 #MainMenu, footer, header, [data-testid="stDecoration"],
 [data-testid="stStatusWidget"], [data-testid="stHeader"],
@@ -90,7 +90,7 @@ input, input[type="text"] {{
     border: 1px solid {T['border_hi']} !important;
     border-radius: 6px !important;
     color: {T['text1']} !important;
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Space Grotesk', sans-serif !important;
     font-size: 13px !important;
 }}
 input:focus, input[type="text"]:focus {{
@@ -103,7 +103,7 @@ textarea {{
     border: 1px solid {T['border_hi']} !important;
     border-radius: 6px !important;
     color: {T['text1']} !important;
-    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace !important;
+    font-family: 'Space Mono', Menlo, Monaco, monospace !important;
     font-size: 12px !important;
     line-height: 1.65 !important;
 }}
@@ -137,7 +137,7 @@ textarea:focus {{
     font-size: 12px !important; font-weight: 500 !important;
     padding: 6px 14px !important; border-radius: 6px !important;
     box-shadow: none !important; cursor: pointer !important;
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Space Grotesk', sans-serif !important;
     transition: border-color 0.15s, color 0.15s !important;
 }}
 .stButton > button:hover {{
@@ -148,17 +148,18 @@ textarea:focus {{
 /* ── Run Gate button: override primary only ── */
 [data-testid="baseButton-primary"],
 button[kind="primary"] {{
-    background: linear-gradient(135deg, {T['accent']} 0%, {'#16A34A' if DARK else '#116329'} 100%) !important;
+    background: {T['accent']} !important;
     color: {T['btn_txt']} !important;
-    font-weight: 700 !important; font-size: 14px !important;
-    letter-spacing: 0.2px !important; border: none !important;
-    border-radius: 7px !important; padding: 13px 28px !important;
-    box-shadow: 0 0 0 1px {T['accent_bdr']}, 0 4px 20px {T['accent_bg']} !important;
-    transition: box-shadow 0.2s, transform 0.15s !important;
+    font-weight: 700 !important; font-size: 13px !important;
+    letter-spacing: 1.5px !important; text-transform: uppercase !important;
+    border: none !important; border-radius: 3px !important;
+    padding: 13px 28px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    transition: opacity 0.15s, transform 0.15s !important;
 }}
 [data-testid="baseButton-primary"]:hover,
 button[kind="primary"]:hover {{
-    box-shadow: 0 0 0 1px {T['accent']}, 0 6px 28px {T['accent_bg']} !important;
+    opacity: 0.88 !important;
     transform: translateY(-1px) !important;
 }}
 
@@ -173,12 +174,12 @@ button[kind="primary"]:hover {{
 .nc-logo {{ display: flex; align-items: center; gap: 13px; }}
 .nc-logo-icon {{
     width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
-    background: linear-gradient(135deg, {T['accent']} 0%, {'#15803D' if DARK else '#116329'} 100%);
+    background: linear-gradient(135deg, {T['accent']} 0%, {'#9A7030' if DARK else '#9A7030'} 100%);
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 0 20px {T['accent_bg']};
 }}
-.nc-title {{ font-size: 17px; font-weight: 700; color: {T['text1']}; letter-spacing: -0.3px; }}
-.nc-sub {{ font-size: 13px; color: {T['muted']}; margin-top: 3px; }}
+.nc-title {{ font-size: 16px; font-weight: 700; color: {T['text1']}; letter-spacing: 1.2px; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif !important; }}
+.nc-sub {{ font-size: 12px; color: {T['text2']}; margin-top: 3px; letter-spacing: 0.3px; }}
 /* right-align toggle col - scope to header row only */
 [data-testid="stHorizontalBlock"]:first-child [data-testid="column"]:last-child {{
     display: flex !important; justify-content: flex-end !important;
@@ -207,10 +208,10 @@ button[kind="primary"]:hover {{
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: var(--ac, {T['border']});
 }}
-.nc-stat-v {{ font-size: 26px; font-weight: 800; letter-spacing: -1px; line-height: 1; }}
+.nc-stat-v {{ font-size: 30px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; font-family: 'Barlow Condensed', sans-serif !important; }}
 .nc-stat-l {{ font-size: 10px; color: {T['text2']}; font-weight: 600; margin-top: 5px;
              text-transform: uppercase; letter-spacing: 0.9px; }}
-.g {{ color: {T['accent']}; }} .b {{ color: {'#58A6FF' if DARK else '#0969DA'}; }}
+.g {{ color: {T['accent']}; }} .b {{ color: {T['text1']}; }}
 
 /* ── Section label ── */
 .nc-lbl {{
@@ -235,14 +236,14 @@ button[kind="primary"]:hover {{
 .nc-v-flag .nc-v-ico {{ background: {T['amber_bg']}; color: {T['amber']}; }}
 .nc-v-fail .nc-v-ico {{ background: {T['red_bg']}; color: {T['red']}; }}
 .nc-v-body {{ flex: 1; }}
-.nc-v-status {{ font-size: 24px; font-weight: 800; letter-spacing: -0.6px; line-height: 1; }}
+.nc-v-status {{ font-size: 28px; font-weight: 900; letter-spacing: 2px; line-height: 1; font-family: 'Barlow Condensed', sans-serif !important; text-transform: uppercase; }}
 .nc-v-pass .nc-v-status {{ color: {T['accent']}; }}
 .nc-v-flag .nc-v-status {{ color: {T['amber']}; }}
 .nc-v-fail .nc-v-status {{ color: {T['red']}; }}
 .nc-v-desc {{ font-size: 13px; margin-top: 4px; color: {T['muted']}; }}
 .nc-v-score {{ text-align: right; flex-shrink: 0; }}
-.nc-v-score-n {{ font-size: 32px; font-weight: 800; letter-spacing: -1px;
-                line-height: 1; color: {T['border_hi']}; }}
+.nc-v-score-n {{ font-size: 36px; font-weight: 900; letter-spacing: -1px;
+                line-height: 1; color: {T['text1']}; font-family: 'Barlow Condensed', sans-serif !important; }}
 .nc-v-score-l {{ font-size: 10px; color: {T['muted']}; text-transform: uppercase;
                 letter-spacing: 0.9px; margin-top: 3px; font-weight: 600; }}
 
@@ -266,7 +267,7 @@ button[kind="primary"]:hover {{
     margin-top: 9px; padding: 8px 10px; background: {T['meta_bg']};
     border: 1px solid {T['surface2']}; border-radius: 5px;
     font-size: 10.5px; color: {T['text2']};
-    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace; line-height: 1.8;
+    font-family: 'Space Mono', Menlo, Monaco, monospace; line-height: 1.8;
 }}
 .sv-key   {{ color: {T['sv_key']}; }}
 .sv-str   {{ color: {T['sv_str']}; }}
@@ -281,12 +282,12 @@ button[kind="primary"]:hover {{
 }}
 .nc-foot-m {{
     font-size: 11px; color: {T['muted']};
-    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace;
+    font-family: 'Space Mono', Menlo, Monaco, monospace;
 }}
 .nc-foot-t {{
     background: {T['accent_bg']}; border: 1px solid {T['accent_bdr']}; color: {T['accent']};
     font-size: 10px; font-weight: 500; padding: 3px 10px; border-radius: 4px;
-    font-family: Menlo, Monaco, 'SF Mono', 'Fira Code', monospace; letter-spacing: 0.3px;
+    font-family: 'Space Mono', Menlo, Monaco, monospace; letter-spacing: 0.3px;
 }}
 
 /* ── Misc ── */
@@ -348,7 +349,7 @@ with h_left:
   <div class="nc-logo">
     <div class="nc-logo-icon">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-           stroke="{'#052E16' if DARK else '#FFFFFF'}" stroke-width="2.5"
+           stroke="#000000" stroke-width="2.5"
            stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
       </svg>
