@@ -47,10 +47,10 @@ st.divider()
 # ── Sample loader ─────────────────────────────────────────────────────────────
 sample_choice = st.selectbox(
     "Load a sample post (or paste your own below)",
-    ["— paste your own —"] + list(SAMPLES.keys()),
+    ["- paste your own -"] + list(SAMPLES.keys()),
 )
 
-if sample_choice != "— paste your own —":
+if sample_choice != "- paste your own -":
     p = parse_markdown(os.path.join(BASE, SAMPLES[sample_choice]))
     d_title, d_slug, d_kw = p.title, p.slug, p.primary_keyword
     d_cluster, d_class, d_body = p.cluster_id, p.content_class, p.body
@@ -105,9 +105,9 @@ if run:
 
     ICON  = {"PASS": "✅", "FLAG": "🟡", "FAIL": "🔴"}
     LABEL = {
-        "PASS": "PASS — cleared for publish queue",
-        "FLAG": "FLAG — routed to human review",
-        "FAIL": "FAIL — blocked, return to generation",
+        "PASS": "PASS - cleared for publish queue",
+        "FLAG": "FLAG - routed to human review",
+        "FAIL": "FAIL - blocked, return to generation",
     }
     CSS   = {"PASS": "verdict-pass", "FLAG": "verdict-flag", "FAIL": "verdict-fail"}
     COLOR = {"PASS": "#3fb950",      "FLAG": "#e3b341",      "FAIL": "#f85149"}
@@ -127,7 +127,7 @@ if run:
     for i, check in enumerate(report.checks):
         with cols[i % 3]:
             with st.expander(
-                f"{ICON[check.status]} **{check.name}** — {check.status}",
+                f"{ICON[check.status]} **{check.name}** - {check.status}",
                 expanded=(check.status != "PASS"),
             ):
                 if check.reasons:

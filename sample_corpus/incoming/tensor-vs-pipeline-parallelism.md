@@ -12,13 +12,13 @@ Training large language models across multiple GPUs forces a choice between two 
 
 Tensor parallelism splits individual weight matrices across GPUs. During a forward pass, each GPU holds a shard of every layer's weights and performs its portion of the matrix multiplication. The results are combined via an all-reduce collective before passing to the next layer.
 
-The advantage is fine-grained memory distribution. A model that exceeds a single GPU's memory becomes trainable by dividing each layer rather than each stage. The tradeoff is communication volume: every layer boundary requires an all-reduce across all participating GPUs, which means high-bandwidth interconnect is not optional — it is load-bearing. On NVLink-connected nodes this overhead is manageable [S1]. Across slower interconnects it dominates runtime.
+The advantage is fine-grained memory distribution. A model that exceeds a single GPU's memory becomes trainable by dividing each layer rather than each stage. The tradeoff is communication volume: every layer boundary requires an all-reduce across all participating GPUs, which means high-bandwidth interconnect is not optional - it is load-bearing. On NVLink-connected nodes this overhead is manageable [S1]. Across slower interconnects it dominates runtime.
 
 ## What pipeline parallelism does
 
 Pipeline parallelism assigns different layers to different GPUs. GPU 0 holds layers 1–8, GPU 1 holds layers 9–16, and so on. A micro-batch flows through each stage sequentially, and multiple micro-batches are in flight simultaneously to keep GPUs from stalling while waiting for upstream results.
 
-Communication happens only at stage boundaries — one activation tensor passed forward and one gradient tensor passed backward per micro-batch. This is far less data than tensor parallelism's per-layer all-reduce, which makes pipeline parallelism tolerant of lower-bandwidth inter-node links. The cost is pipeline bubbles: GPUs idle at the start and end of each batch while the pipeline fills and drains. Megatron-LM reports bubble fraction of roughly 1/(number of stages) [S2], which grows expensive at high stage counts.
+Communication happens only at stage boundaries - one activation tensor passed forward and one gradient tensor passed backward per micro-batch. This is far less data than tensor parallelism's per-layer all-reduce, which makes pipeline parallelism tolerant of lower-bandwidth inter-node links. The cost is pipeline bubbles: GPUs idle at the start and end of each batch while the pipeline fills and drains. Megatron-LM reports bubble fraction of roughly 1/(number of stages) [S2], which grows expensive at high stage counts.
 
 ## When to use each
 
@@ -28,7 +28,7 @@ Use tensor parallelism when your model layers are individually too large to fit 
 
 Use pipeline parallelism when you are distributing across nodes connected by InfiniBand or Ethernet, where all-reduce costs would dominate. It is also the right choice when individual layers fit in memory and the goal is to accommodate a model with many layers rather than very wide layers.
 
-In practice, large training runs combine both [S3]. Tensor parallelism handles intra-node distribution, pipeline parallelism handles inter-node. This two-dimensional approach — sometimes called 3D parallelism when data parallelism is added — is how frontier models are trained at scale.
+In practice, large training runs combine both [S3]. Tensor parallelism handles intra-node distribution, pipeline parallelism handles inter-node. This two-dimensional approach - sometimes called 3D parallelism when data parallelism is added - is how frontier models are trained at scale.
 
 ## Memory implications
 
@@ -44,7 +44,7 @@ For a transformer layer with hidden dimension H and sequence length S, tensor pa
 
 Start with pipeline parallelism across nodes and tensor parallelism within nodes. Profile bubble fraction and all-reduce time separately. If bubble fraction exceeds 10% of step time, increase micro-batch count. If all-reduce time exceeds 15% of step time, reduce tensor parallelism degree or verify interconnect utilisation. Both numbers are measurable in one training run before you commit to a configuration.
 
-The correct answer depends on your model architecture, hardware topology, and target batch size. These strategies are not alternatives to be chosen once — they are dimensions of a configuration space worth profiling before locking in.
+The correct answer depends on your model architecture, hardware topology, and target batch size. These strategies are not alternatives to be chosen once - they are dimensions of a configuration space worth profiling before locking in.
 
 ## Sources
 
