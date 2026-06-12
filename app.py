@@ -82,7 +82,7 @@ html, body, .stApp {{ font-family: 'Inter', sans-serif !important; }}
 [data-testid="stStatusWidget"], [data-testid="stHeader"],
 [data-testid="stSidebarCollapsedControl"],
 [data-testid="collapsedControl"] {{ display: none !important; }}
-.block-container {{ padding-top: 1.2rem !important; max-width: 1160px !important; }}
+.block-container {{ padding-top: 1.2rem !important; padding-bottom: 1.5rem !important; max-width: 1160px !important; }}
 
 /* ── Inputs ── */
 input, input[type="text"] {{
