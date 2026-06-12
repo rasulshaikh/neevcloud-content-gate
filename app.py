@@ -294,7 +294,9 @@ button[kind="primary"]:hover {{
 ::-webkit-scrollbar-track {{ background: transparent; }}
 ::-webkit-scrollbar-thumb {{ background: {T['border']}; border-radius: 3px; }}
 [data-testid="stVerticalBlock"] > div {{ gap: 0 !important; }}
-.stMarkdown p {{ color: {T['text2']}; }}
+[data-testid="stMarkdownContainer"] {{ padding: 0 !important; }}
+[data-testid="element-container"] {{ padding-top: 0 !important; padding-bottom: 0 !important; }}
+.stMarkdown p {{ color: {T['text2']}; margin: 0 !important; }}
 
 /* ── Responsive ── */
 @media (max-width: 640px) {{
@@ -422,9 +424,9 @@ with left:
 
 with right:
     st.markdown('<div class="nc-lbl">Post Body - Markdown</div>', unsafe_allow_html=True)
-    # Height matches left column (5 inputs x ~58px + label = ~310px)
+    # Height matches left column (5 inputs x ~62px + label = ~334px)
     body = st.text_area(
-        "body", value=d_body, height=305,
+        "body", value=d_body, height=322,
         label_visibility="collapsed", key=f"b_{sample_choice}",
     )
 
