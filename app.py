@@ -197,10 +197,15 @@ textarea:focus {
 .nc-card-ok { font-size: 11.5px; color: #3FB950; font-weight: 500; }
 .nc-card-m {
     margin-top: 9px; padding: 8px 10px; background: #0D1117;
-    border: 1px solid #21262D; border-radius: 5px;
-    font-size: 10.5px; color: #484F58;
-    font-family: 'SF Mono','Fira Code',monospace; line-height: 1.7;
+    border: 1px solid #30363D; border-radius: 5px;
+    font-size: 10.5px; color: #8B949E;
+    font-family: 'SF Mono','Fira Code',monospace; line-height: 1.8;
 }
+.sv-key   { color: #9CDCFE; }
+.sv-str   { color: #CE9178; }
+.sv-num   { color: #B5CEA8; }
+.sv-kw    { color: #569CD6; }
+.sv-punct { color: #6E7681; }
 
 /* ── Footer ── */
 .nc-foot {
@@ -338,6 +343,52 @@ with right:
 st.markdown('<hr class="nc-hr">', unsafe_allow_html=True)
 run = st.button("Run Quality Gate", type="primary", use_container_width=True)
 
+
+def _fmt(v, depth=0):
+    """Recursively render a Python value as syntax-highlighted HTML."""
+    if isinstance(v, bool):
+        return f'<span class="sv-kw">{str(v).lower()}</span>'
+    if v is None:
+        return '<span class="sv-kw">null</span>'
+    if isinstance(v, (int, float)):
+        return f'<span class="sv-num">{v}</span>'
+    if isinstance(v, str):
+        s = (v[:22] + "...") if len(v) > 25 else v
+        return f'<span class="sv-str">\'{s}\'</span>'
+    if isinstance(v, list):
+        if not v:
+            return '<span class="sv-kw">[]</span>'
+        if depth >= 1:
+            return f'<span class="sv-punct">[</span><span class="sv-num">{len(v)} items</span><span class="sv-punct">]</span>'
+        parts = [_fmt(i, depth + 1) for i in v[:3]]
+        tail = '<span class="sv-punct">, ...</span>' if len(v) > 3 else ""
+        return (f'<span class="sv-punct">[</span>'
+                + '<span class="sv-punct">, </span>'.join(parts) + tail
+                + '<span class="sv-punct">]</span>')
+    if isinstance(v, dict):
+        if not v:
+            return '<span class="sv-kw">{}</span>'
+        pairs = []
+        for dk, dv in list(v.items())[:3]:
+            pairs.append(
+                f'<span class="sv-key">{dk}</span>'
+                f'<span class="sv-punct">: </span>{_fmt(dv, depth + 1)}'
+            )
+        return ('<span class="sv-punct">{{</span>'
+                + '<span class="sv-punct">, </span>'.join(pairs)
+                + '<span class="sv-punct">}}</span>')
+    return f'<span class="sv-str">{v}</span>'
+
+
+def _metrics_html(metrics):
+    lines = []
+    for k, v in metrics.items():
+        lines.append(
+            f'<span class="sv-key">{k}</span>'
+            f'<span class="sv-punct">: </span>{_fmt(v)}'
+        )
+    return "<br>".join(lines)
+
 # ── Results ───────────────────────────────────────────────────────────────────
 if run:
     if not body.strip():
@@ -396,8 +447,7 @@ if run:
         ) if check.reasons else '<div class="nc-card-ok">&#10003; All clear</div>'
         metrics = ""
         if check.metrics:
-            lines = "<br>".join(f"{k}: {val}" for k, val in check.metrics.items())
-            metrics = f'<div class="nc-card-m">{lines}</div>'
+            metrics = f'<div class="nc-card-m">{_metrics_html(check.metrics)}</div>'
         cards.append(f"""
 <div class="nc-card nc-card-{s}">
   <div class="nc-card-h">
