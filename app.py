@@ -32,6 +32,7 @@ gate, _ = load_gate()
 SAMPLES = {
     "tensor-vs-pipeline-parallelism  ->  expected PASS": "sample_corpus/incoming/tensor-vs-pipeline-parallelism.md",
     "flash-attention-long-context-serving  ->  expected PASS": "sample_corpus/incoming/flash-attention-long-context-serving.md",
+    "agentic-control-plane  ->  expected PASS": "sample_corpus/incoming/agentic-control-plane.md",
     "gb300-architecture-explained  ->  expected FLAG": "sample_corpus/incoming/gb300-architecture-explained.md",
     "vllm-vs-tensorrt-llm-production  ->  expected FLAG": "sample_corpus/incoming/vllm-vs-tensorrt-llm-production.md",
     "multi-gpu-cloud-vendor-lock-in  ->  expected FLAG": "sample_corpus/incoming/multi-gpu-cloud-vendor-lock-in.md",
