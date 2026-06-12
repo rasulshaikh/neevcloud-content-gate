@@ -127,36 +127,37 @@ textarea:focus {{
 }}
 [data-testid="stSelectbox"] svg {{ fill: {T['muted']} !important; }}
 
-/* ── Run Gate button (primary only) ── */
-[data-testid="baseButton-primary"] {{
+/* ── All buttons default: ghost/minimal ── */
+.stButton > button {{
+    background: {T['surface']} !important;
+    border: 1px solid {T['border']} !important;
+    color: {T['text2']} !important;
+    font-size: 12px !important; font-weight: 500 !important;
+    padding: 6px 14px !important; border-radius: 6px !important;
+    box-shadow: none !important; cursor: pointer !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: border-color 0.15s, color 0.15s !important;
+}}
+.stButton > button:hover {{
+    border-color: {T['border_hi']} !important;
+    color: {T['text1']} !important;
+    transform: none !important; box-shadow: none !important;
+}}
+/* ── Run Gate button: override primary only ── */
+[data-testid="baseButton-primary"],
+button[kind="primary"] {{
     background: linear-gradient(135deg, {T['accent']} 0%, {'#16A34A' if DARK else '#116329'} 100%) !important;
     color: {T['btn_txt']} !important;
     font-weight: 700 !important; font-size: 14px !important;
     letter-spacing: 0.2px !important; border: none !important;
     border-radius: 7px !important; padding: 13px 28px !important;
     box-shadow: 0 0 0 1px {T['accent_bdr']}, 0 4px 20px {T['accent_bg']} !important;
-    transition: box-shadow 0.2s, transform 0.15s !important; cursor: pointer !important;
-    font-family: 'Inter', sans-serif !important;
+    transition: box-shadow 0.2s, transform 0.15s !important;
 }}
-[data-testid="baseButton-primary"]:hover {{
+[data-testid="baseButton-primary"]:hover,
+button[kind="primary"]:hover {{
     box-shadow: 0 0 0 1px {T['accent']}, 0 6px 28px {T['accent_bg']} !important;
     transform: translateY(-1px) !important;
-}}
-/* ── Theme toggle (secondary) ── */
-[data-testid="baseButton-secondary"] {{
-    background: {T['surface']} !important;
-    border: 1px solid {T['border']} !important;
-    color: {T['text2']} !important;
-    font-size: 12px !important; font-weight: 500 !important;
-    padding: 6px 14px !important; border-radius: 6px !important;
-    box-shadow: none !important; transform: none !important;
-    font-family: 'Inter', sans-serif !important;
-    transition: border-color 0.15s !important;
-}}
-[data-testid="baseButton-secondary"]:hover {{
-    border-color: {T['border_hi']} !important;
-    color: {T['text1']} !important;
-    transform: none !important; box-shadow: none !important;
 }}
 
 /* ── Divider ── */
@@ -350,7 +351,7 @@ with h_left:
 """, unsafe_allow_html=True)
 
 with h_right:
-    if st.button("☀" if DARK else "◑", use_container_width=True):
+    if st.button("☀" if DARK else "◑"):
         st.session_state.dark = not DARK
         st.rerun()
 
